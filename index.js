@@ -1,164 +1,141 @@
 (function(m, w) {
 
-    var implementInterface = function(f, implementing) {
-        if (!implementing || typeof implementing != "object") {
+	var implementInterface = function(f, implementing) {
 
-            throw new Error("SClass: I can not implement interface of " + typeof implementing);
+		if (!implementing || typeof implementing != "object") {
+			throw new Error("sClass: I can not implement interface of " + typeof implementing);
+		}
 
-        }
+		for (var p in implementing) {
+			var item = implementing[p];
 
-        for (var p in implementing) {
+			if (typeof item == "object") {
+				f.prototype[p] = JSON.parse(JSON.stringify(item));
+			} else {
+				f.prototype[p] = item;
+			}
+		}
 
-            if (typeof implementing[p] == "object") {
+	};
 
-                f.prototype[p] = JSON.parse(JSON.stringify(implementing[p]));
+	var makeExtension = function(f, extending) {
 
-            } else {
+		f.prototype = Object.create(extending.prototype);
 
-                f.prototype[p] = implementing[p];
+		for (var p in extending.prototype) {
+			if (typeof extending.prototype[p] != "object") {
+				continue;
+			}
 
-            }
-        }
+			f.prototype[p] = JSON.parse(JSON.stringify(extending.prototype[p]));
+		}
 
-    };
+		f.prototype.$super = function() {
 
-    var makeExtension = function(f, extended) {
+			var caller = arguments.callee.caller;
 
-        f.prototype = Object.create(extended.prototype);
+			if (caller == this.constructor) {
+				return this.___PARENT___.apply(this, arguments);
+			}
 
-        for (var p in extended.prototype) {
+			var proto = this.constructor.prototype;
 
-            if (typeof extended.prototype[p] != "object") {
+			if (!caller.___SUPERNAME___) {
+				for (var p in proto) {
+					var method = proto[p];
 
-                continue;
+					if (typeof method != "function") { 
+						continue; 
+					}
 
-            }
+					method.___SUPERNAME___ = p;
+				}
+			}
 
-            f.prototype[p] = JSON.parse(JSON.stringify(extended.prototype[p]));
+			var callerName = caller.___SUPERNAME___ || "";
 
-        }
+			if (!callerName) {
+				for (var p in proto) {
+					if (proto[p] == caller) {
+						callerName = p;
+						break;
+					}
+				}
+			}
 
-        f.prototype.$super = function() {
+			var method = this.___PARENT___.prototype[callerName];
 
-            var caller = arguments.callee.caller;
-            var callerName = "";
+			if (!method) {
+				throw new Error("There is not $super method named " + callerName + " in parent class");
+			}
 
-            if (caller == this.constructor) {
+			return method.apply(this, arguments);
 
-                return this.___PARENT___.apply(this, arguments);
+		};
 
-            }
+		f.prototype.constructor = f;
+		f.prototype.___PARENT___ = extending;
 
-            var proto = this.constructor.prototype;
+	};
 
-            for (var p in proto) {
+	var sClass = function(conf) {
 
-                if (proto[p] == caller) {
+		conf = conf || {};
 
-                    callerName = p;
-                    break;
+		if (conf && (typeof conf != "object" || conf instanceof Array)) {
+			throw new Error("sClass accepts only object as its argument.");
+		}
 
-                }
+		var f = function() {
 
-            }
+			if (this.$constructor) {
+				if (typeof this.$constructor != "function") {
+					if (console && console.warn) {
+						console.warn("sClass: $constructor should by a function not " + typeof this.$constructor);
+					}
+				}
 
-            var method = this.___PARENT___.prototype[callerName];
+				this.$constructor.apply(this, arguments);
+				return this;
 
-            if (!method) {
+			}
 
-                throw new Error("There is not $super method named " + callerName + " in parent class");
+		};
 
-            }
+		if (conf.extending) {
+			var extending = conf.extending;
 
-            return method.apply(this, arguments);
+			if (typeof(extending) != "function") {
+				throw new Error("sClass: extending can be only construct function not " + typeof extending);
+			}
 
-        };
+			makeExtension(f, extending);
+		}
 
-        f.prototype.constructor = f;
-        f.prototype.___PARENT___ = extended;
+		if (conf.implementing) {
+			var implementing = [].concat(conf.implementing);
 
-    };
+			for (var i = 0, len = implementing.length; i < len; i++) {
+				var imp = implementing[i];
 
-    var SClass = function(conf) {
+				if (imp.prototype) {
+					implementInterface(f, imp.prototype);
+				}
 
-        conf = conf || {};
+				implementInterface(f, imp);
+			}
+		}
 
-        if (conf && (typeof conf != "object" || conf instanceof Array)) {
+		return f;
+	};
 
-            throw new Error("SClass accepts only object as its argument.");
-
-        }
-
-        var f = function() {
-
-            if (this.$constructor) {
-
-                if (typeof this.$constructor == "function") {
-
-                    if (console && console.warn) {
-
-                        console.warn("SClass: $constructor should by a function not " + typeof this.$constructor);
-
-                    }
-
-                }
-
-                this.$constructor.apply(this, arguments);
-
-                return this;
-
-            }
-
-        };
-
-        if (conf.extended) {
-
-            var extended = conf.extended;
-
-            if (typeof(extended) != "function") {
-                throw new Error("SClass: extended can be only construct function not " + typeof extended);
-            }
-
-            makeExtension(f, extended);
-
-        }
-
-        if (conf.implementing) {
-
-            var implementing = [].concat(conf.implementing);
-
-            for (var i = 0, len = implementing.length; i < len; i++) {
-
-                var imp = implementing[i];
-
-                if (imp.prototype) {
-
-                    implementInterface(f, imp.prototype);
-
-                }
-
-                implementInterface(f, imp);
-
-            }
-
-        }
-
-        f.___SCLASS___ = true;
-
-        return f;
-    };
-
-    if (m) {
-
-        module.exports.SClass = SClass;
-
-    } else if (w) {
-
-        w.SClass = SClass;
-
-    }
+	if (m && typeof m == "object" && m.exports && typeof m.exports == "object") {
+		m.exports.sClass = sClass;
+	} else if (w) {
+		w.sClass = sClass;
+	}
 
 })(
-    typeof(module) != "undefined" ? module : null,
-    typeof(window) != "undefined" ? window : null
+	typeof(module) != "undefined" ? module : null,
+	typeof(window) != "undefined" ? window : null
 );
