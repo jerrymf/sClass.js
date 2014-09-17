@@ -44,7 +44,9 @@
             var callerName = "";
 
             if (caller == this.constructor) {
+
                 return this.___PARENT___.apply(this, arguments);
+
             }
 
             var proto = this.constructor.prototype;
