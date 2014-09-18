@@ -32,7 +32,7 @@ var $Class = require("sclass.js").$Class;
 var MyClass = $Class(); // this is a class
 
 MyClass.prototype.$constructor = function(id) {
-  // this function is applied in its context during new MyClass() is performed
+  // this function is applied in its context during performing statement: new MyClass()
   this.id = id;
   this.text = "Good evening ... infidels!";
 };
