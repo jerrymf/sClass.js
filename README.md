@@ -1,7 +1,7 @@
 sClass.js - Simply to create Class in JS
 =========
 
-## Stable version - v1.0.0
+## Stable version - v1.0.1
 
 [![Build Status](https://travis-ci.org/jerrymf/sClass.js.svg?branch=master)](https://travis-ci.org/jerrymf/sClass.js)
 
