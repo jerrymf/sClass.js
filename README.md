@@ -2,6 +2,7 @@ sClass.js
 =========
 
 Small JS utility for defining classes, performing inheritance and implementing interfaces.
+Supported IE8 and all modern browsers.
 
 ## Creating class
 ```js
