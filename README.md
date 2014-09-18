@@ -8,7 +8,7 @@ supported IE8 and all modern browsers.
 
 ## Installation
 
-### node.js
+### Node.js
 
 ```sh
 npm install sclass.js --save
