@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - '0.11'
+deploy:
+  provider: bower
+  email: jerrymf@gmail.com
+  on:
+    tags: true
+    repo: jerrymf/sClass.js
