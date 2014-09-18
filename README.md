@@ -107,8 +107,8 @@ var JediKnight = $Class({
 
 JediKnight.prototype.$constructor = function(name, skill) {
   this.$super(name); // just simply call $super to apply parent $constructor
+  this.skill = skill || 0;
   this.weapon = "";
-  this.skill = 0;
   this.weaponSkill = 0;
 };
 
