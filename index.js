@@ -1,5 +1,64 @@
 (function(m, w) {
 
+	var makeClass = function() {
+
+		var f = function() {
+
+			if (this.$constructor) {
+				if (typeof this.$constructor != "function") {
+					if (console && console.warn) {
+						console.warn("sClass: $constructor should by a function not " + typeof this.$constructor);
+					}
+				} else {
+					this.$constructor.apply(this, arguments);
+				}
+
+			}
+
+			return this;
+
+		};
+
+		return f;
+
+	};
+
+	var makeSingleton = function() {
+		var instance = null;
+
+		var f = function() {
+
+			throw new Error("sClass: I am singleton. You can not call me this way. Use getInstance method to get referenced for object.");
+
+		};
+
+		f.getInstance = function() {
+
+			if (instance) {
+				return instance;
+			}
+
+			instance = Object.create(f.prototype);
+
+			if (instance.$constructor) {
+				if (typeof instance.$constructor != "function") {
+					if (console && console.warn) {
+						console.warn("sClass: $constructor should by a function not " + typeof this.$constructor);
+					}
+				} else {
+					instance.$constructor.apply(instance);
+				}
+
+			}
+
+			return instance;
+
+		};
+
+		return f;
+
+	};
+
 	var implementInterface = function(f, implementing) {
 
 		if (!implementing || typeof implementing != "object") {
@@ -86,21 +145,13 @@
 			throw new Error("sClass accepts only object as its argument.");
 		}
 
-		var f = function() {
+		var f = null;
 
-			if (this.$constructor) {
-				if (typeof this.$constructor != "function") {
-					if (console && console.warn) {
-						console.warn("sClass: $constructor should by a function not " + typeof this.$constructor);
-					}
-				}
-
-				this.$constructor.apply(this, arguments);
-				return this;
-
-			}
-
-		};
+		if (!conf.singleton) {
+			f = makeClass();
+		} else {
+			f = makeSingleton();
+		}
 
 		if (conf.extending) {
 			var extending = conf.extending;
