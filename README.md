@@ -1,4 +1,4 @@
-sClass.js
+sClass.js (v1.0.0)
 =========
 
 Small JS utility for defining classes, performing inheritance and implementing interfaces.
