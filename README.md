@@ -6,6 +6,20 @@ sClass.js (v1.0.0)
 Small JS utility for defining classes, performing inheritance and implementing interfaces. It is easy to use and 
 supported IE8 and all modern browsers.
 
+## Installation
+
+### node.js
+
+```sh
+npm install sclass.js --save
+```
+
+### Bower
+
+```sh
+bower install sclass.js --save
+```
+
 ## Creating class
 ```js
 
