@@ -62,7 +62,7 @@
 
 	var implementInterface = function(f, implementing) {
 
-		if (!implementing || typeof implementing != "object") {
+		if (!implementing || (typeof implementing != "object" && typeof implementing != "function")) {
 			throw new Error("sClass: I can not implement interface of " + typeof implementing);
 		}
 
@@ -164,6 +164,12 @@
 
 			for (var i = 0, len = implementing.length; i < len; i++) {
 				var imp = implementing[i];
+
+				if (!imp || (typeof imp != "function" && typeof imp != "object")) {
+					if (console && console.warn) {
+						console.warn("sClass: You are trying implement " + typeof imp + ". I can work only with object.");
+					}
+				}
 
 				if (imp.prototype) {
 					implementInterface(f, imp.prototype);
