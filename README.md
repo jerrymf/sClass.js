@@ -178,3 +178,12 @@ console.log(jKnight.getWeapon()); // "lightsaber"
 console.log(jKnight.getSkill()); // 10
 
 ```
+
+## Implementing multiple interfaces
+```js
+
+var Sith = $Class({ 
+  implementing: [IFaceWeapons, IFaceSkills] // first IFaceWeapons is implemented and then IFaceSkills
+});
+
+```
