@@ -24,7 +24,6 @@ bower install sclass.js --save
 ```js
 
 var $Class = require("sclass.js").$Class;
-
 ```
 
 ## Creating class
