@@ -77,7 +77,7 @@ JediKnight.prototype.$constructor = function() {
 var jKnight = new JediKnight();
 console.log(jKnight instanceof JediKnight); // true
 console.log(jKnight instanceof Knight); // true
-console.log(jKnight.getWeapon()); // shows "light saber"
+console.log(jKnight.getWeapon()); // shows "lightsaber"
 
 ```
 
@@ -128,7 +128,7 @@ JediKnight.prototype.getWeaponSkill = function() {
 var jKnight = new JediKnight("Obi-Wan Kenobi", 5);
 jKnight.setWeapon("lightsaber", 10);
 console.log(jKnight.getSkill()); // 5
-console.log(jKnight.getWeapon()); // "blue light saber"
+console.log(jKnight.getWeapon()); // "lightsaber"
 console.log(jKnight.getWeaponSkill()); // 10
 
 ```
@@ -174,7 +174,7 @@ var jKnight = new JediKnight("Obi-Wan Kenobi");
 jKnight.setWeapon("lightsaber");
 jKnight.setSkill(10);
 
-console.log(jKnight.getWeapon()); // "light saber"
+console.log(jKnight.getWeapon()); // "lightsaber"
 console.log(jKnight.getSkill()); // 10
 
 ```
