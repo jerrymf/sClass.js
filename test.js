@@ -16,8 +16,8 @@ describe("It tests if sClass can create class", function() {
 
         F = sClass();
 
-        F.prototype.$constructor = function() {
-            this.test = "test";
+        F.prototype.$constructor = function(test) {
+            this.test = test || "test";
         };
 
         F.prototype.getTest = function() {
@@ -40,6 +40,14 @@ describe("It tests if sClass can create class", function() {
         expect(f.getTest()).toEqual("test");
 
     });
+
+    it("should correctly pass the parameter", function() {
+        var f = new F("custom");
+
+        expect(typeof f).toEqual("object");
+        expect(typeof f.getTest).toEqual("function");
+        expect(f.getTest()).toEqual("custom");
+    })
 
     it("should throw an error", function() {
 
