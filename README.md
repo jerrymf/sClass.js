@@ -1,4 +1,4 @@
-sClass.js (v1.0.0)
+sClass.js (v1.0.0) - Simply to create Class in JS
 =========
 
 [![Build Status](https://travis-ci.org/jerrymf/sClass.js.svg?branch=master)](https://travis-ci.org/jerrymf/sClass.js)
