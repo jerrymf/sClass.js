@@ -24,6 +24,7 @@
 	};
 
 	var makeSingleton = function() {
+
 		var instance = null;
 
 		var f = function() {
