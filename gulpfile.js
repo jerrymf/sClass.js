@@ -5,6 +5,8 @@ var gulpUglify = require("gulp-uglify");
 var gulpRename = require("gulp-rename");
 var gulpSavefile = require("gulp-savefile");
 
+var karma = require("karma").server;
+
 // Lint Task
 gulp.task("lint", function() {
 
@@ -24,4 +26,14 @@ gulp.task("minify", function() {
 
 });
 
-gulp.task("default", ["lint", "minify"]);
+// run tests
+gulp.task("test", function (done) {
+
+    karma.start({
+        configFile: __dirname + "/karma.conf.js",
+        singleRun: true
+    }, done);
+
+});
+
+gulp.task("default", ["lint", "minify", "test"]);
