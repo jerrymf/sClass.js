@@ -8,7 +8,8 @@ Small JS utility for defining classes, performing inheritance and implementing i
 
 var MyClass = sClass(); // we define this is a class
 
-MyClass.prototype.$constructor = function(id) { // this function is applied in its context during new MyClass() is performed
+MyClass.prototype.$constructor = function(id) { 
+  // this function is applied in its context during new MyClass() is performed
   this.id = id;
   this.text = "Good evening ... infidels!";
 };
