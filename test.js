@@ -41,6 +41,12 @@ describe("It tests if sClass can create class", function() {
 
     });
 
+    it("should throw an error", function() {
+
+        expect(function() { var F = sClass(1); }).toThrow(new Error("sClass: I accept only object as argument."));
+
+    });
+
 });
 
 describe("It tests if sClass can create singleton", function() {
@@ -311,7 +317,7 @@ describe("It tests if sClass can correctly perform inheritance and implement int
 
     });
 
-    it("should create instance of implemented class", function() {
+    it("should create instance of inherited and implemented class", function() {
 
         var f = new F();
         var f2 = new F2();

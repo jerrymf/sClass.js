@@ -1,5 +1,33 @@
 (function(m, w) {
 
+	if (typeof Object.create != "function") {
+
+		Object.create = (function() {
+
+			var F = function() {};
+
+			return function (prototype) {
+
+				if (arguments.length > 1) {
+					throw Error("Second argument not supported");
+				}
+
+				if (typeof prototype != "object") {
+					throw TypeError("Argument must be an object");
+				}
+
+				F.prototype = prototype;
+				var result = new F();
+				F.prototype = null;
+
+				return result;
+
+			};
+
+		})();
+
+	}
+
 	var makeClass = function() {
 
 		var f = function() {
