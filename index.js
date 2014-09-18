@@ -1,6 +1,6 @@
 /**
  * sClass.js - 1.0.1
- * (c) 2014 Marek Fojtl <jerrymf@gmail.com>, https://github.com/jerrymf/sClass/
+ * (c) 2014 Marek Fojtl <jerrymf@gmail.com>, https://github.com/jerrymf/sClass.js/
  * License: MIT
  */
 
