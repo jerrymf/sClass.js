@@ -67,8 +67,8 @@ Knight.prototype.getWeapon = function() {
 
 
 var JediKnight = $Class({
-  extending: Knight
-}); // you can see we give reference to Knight
+  extending: Knight // you can see we give reference to Knight
+});
 
 JediKnight.prototype.$constructor = function() {
   this.weapon = "lightsaber";
