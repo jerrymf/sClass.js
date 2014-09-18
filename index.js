@@ -7,7 +7,7 @@
 			if (this.$constructor) {
 				if (typeof this.$constructor != "function") {
 					if (console && console.warn) {
-						console.warn("sClass: $constructor should by a function not " + typeof this.$constructor);
+						console.warn("sClass: $constructor should be a function not " + typeof this.$constructor);
 					}
 				} else {
 					this.$constructor.apply(this, arguments);
