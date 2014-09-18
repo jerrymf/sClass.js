@@ -32,7 +32,9 @@ console.log(instance.getId()); // 1
 ## Creating singleton
 ```js
 
-var DeathStar = $Class({ singleton : true });
+var DeathStar = $Class({ 
+  singleton : true 
+});
 
 DeathStar.prototype.$constructor = function(id) { 
   this.weapons = [];
@@ -64,7 +66,9 @@ Knight.prototype.getWeapon = function() {
 
 
 
-var JediKnight = $Class( { extending: Knight } ); // you can see we give reference to Knight
+var JediKnight = $Class({
+  extending: Knight
+}); // you can see we give reference to Knight
 
 JediKnight.prototype.$constructor = function() {
   this.weapon = "lightsaber";
@@ -97,7 +101,9 @@ Knight.prototype.setWeapon = function(name) {
 
 
 
-var JediKnight = $Class( { extending: Knight } ); // you can see we give reference to Knight
+var JediKnight = $Class({
+  extending: Knight // you can see we give reference to Knight
+});
 
 JediKnight.prototype.$constructor = function(name, skill) {
   this.$super(name); // just simply call $super to apply parent $constructor
@@ -148,7 +154,9 @@ var IFaceSkills = {
   }
 };
 
-var Knight = $Class({ implementing: IFaceWeapons });
+var Knight = $Class({
+  implementing: IFaceWeapons
+});
 
 Knight.prototype.$constructor = function(name) {
   this.name = name || "noname";
@@ -156,7 +164,10 @@ Knight.prototype.$constructor = function(name) {
 
 
 
-var JediKnight = $Class({ extending: Knight, implementing: IFaceSkills }); // we use parent $constructor, we can not define it again
+var JediKnight = $Class({
+  extending: Knight,
+  implementing: IFaceSkills
+}); // we use parent $constructor, we can not define it again
 
 var jKnight = new JediKnight("Obi-Wan Kenobi");
 
