@@ -1,5 +1,7 @@
-sClass.js (v1.0.0)
+sClass.js - Simply to create Class in JS
 =========
+
+## Stable version - v1.0.0
 
 [![Build Status](https://travis-ci.org/jerrymf/sClass.js.svg?branch=master)](https://travis-ci.org/jerrymf/sClass.js)
 
@@ -20,7 +22,13 @@ npm install sclass.js --save
 bower install sclass.js --save
 ```
 
-## Using by CommonJS (Browserify, Node.js)
+## Using by browser
+```html
+
+<script type="text/javascript" src="path_to_sclass/index.min.js"></script>
+```
+
+## Using by CommonJS (Node.js)
 ```js
 
 var $Class = require("sclass.js").$Class;
@@ -204,7 +212,8 @@ console.log(jKnight.getSkill()); // 10
 ## Implementing multiple interfaces
 ```js
 
-var Sith = $Class({ 
+var Sith = $Class({
+  extending: Knight,
   implementing: [IFaceWeapons, IFaceSkills] // first IFaceWeapons is implemented and then IFaceSkills
 });
 
