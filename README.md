@@ -22,6 +22,12 @@ npm install sclass.js --save
 bower install sclass.js --save
 ```
 
+## Using by browser
+```html
+
+<script type="text/javascript" src="path_to_sclass/index.min.js"></script>
+```
+
 ## Using by CommonJS (Browserify, Node.js)
 ```js
 
@@ -206,7 +212,8 @@ console.log(jKnight.getSkill()); // 10
 ## Implementing multiple interfaces
 ```js
 
-var Sith = $Class({ 
+var Sith = $Class({
+  extending: Knight,
   implementing: [IFaceWeapons, IFaceSkills] // first IFaceWeapons is implemented and then IFaceSkills
 });
 
