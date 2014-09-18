@@ -13,11 +13,17 @@ describe("It tests if sClass can create class", function() {
     var F = null;
 
     beforeEach(function() {
+
         F = sClass();
 
-        F.prototype.method = function() {
-            return 1;
+        F.prototype.$constructor = function() {
+            this.a = "test";
         };
+
+        F.prototype.getA = function() {
+            return this.a;
+        };
+
     });
 
     it("should create construct function", function() {
@@ -26,12 +32,12 @@ describe("It tests if sClass can create class", function() {
 
     });
 
-    it("should create instance of class", function() {
+    it("should correctly create instance of class", function() {
         var f = new F();
 
         expect(typeof f).toEqual("object");
-        expect(typeof f.method).toEqual("function");
-        expect(f.method()).toEqual(1);
+        expect(typeof f.getA).toEqual("function");
+        expect(f.getA()).toEqual("test");
 
     });
 
