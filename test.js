@@ -1,20 +1,20 @@
-describe("It tests if sClass function exists in window", function() {
+describe("It tests if $Class function exists in window", function() {
 
     it("should exist in window", function() {
 
-        expect(typeof window.sClass).toEqual("function");
+        expect(typeof window.$Class).toEqual("function");
 
     });
 
 });
 
-describe("It tests if sClass can create class", function() {
+describe("It tests if $Class can create class", function() {
 
     var F = null;
 
     beforeEach(function() {
 
-        F = sClass();
+        F = $Class();
 
         F.prototype.$constructor = function(test) {
             this.test = test || "test";
@@ -51,19 +51,19 @@ describe("It tests if sClass can create class", function() {
 
     it("should throw an error", function() {
 
-        expect(function() { var F = sClass(1); }).toThrow(new Error("sClass: I accept only object as argument."));
+        expect(function() { var F = $Class(1); }).toThrow(new Error("$Class: I accept only object as argument."));
 
     });
 
 });
 
-describe("It tests if sClass can create singleton", function() {
+describe("It tests if $Class can create singleton", function() {
 
     var F = null;
 
     beforeEach(function() {
 
-        F = sClass( { singleton: true } );
+        F = $Class( { singleton: true } );
 
         F.prototype.$constructor = function() {
             this.test = "test";
@@ -83,7 +83,7 @@ describe("It tests if sClass can create singleton", function() {
 
     it("should correctly create singleton", function() {
 
-        expect( function() { var f = new F(); } ).toThrow(new Error("sClass: I am singleton. You can not call me this way. Use getInstance method to get referenced for object."));
+        expect( function() { var f = new F(); } ).toThrow(new Error("$Class: I am singleton. You can not call me this way. Use getInstance method to get referenced for object."));
         expect(typeof F.getInstance).toEqual("function");
         expect(typeof F.getInstance()).toEqual("object");
         expect(F.getInstance().getTest()).toEqual("test");
@@ -92,14 +92,14 @@ describe("It tests if sClass can create singleton", function() {
 
 });
 
-describe("It tests if sClass can correctly perform inheritance", function() {
+describe("It tests if $Class can correctly perform inheritance", function() {
 
     var F = null;
     var F2 = null;
 
     beforeEach(function() {
 
-        F = sClass();
+        F = $Class();
 
         F.prototype.$constructor = function() {
             this.test1 = "test1-old";
@@ -116,7 +116,7 @@ describe("It tests if sClass can correctly perform inheritance", function() {
 
         F.prototype.obj = { a : 1 };
 
-        F2 = sClass( { extending: F } );
+        F2 = $Class( { extending: F } );
 
         F2.prototype.getTest2 = function() {
             return "test2-new";
@@ -147,14 +147,14 @@ describe("It tests if sClass can correctly perform inheritance", function() {
 
 });
 
-describe("It tests if sClass can correctly perform $super", function() {
+describe("It tests if $Class can correctly perform $super", function() {
 
     var F = null;
     var F2 = null;
 
     beforeEach(function() {
 
-        F = sClass();
+        F = $Class();
 
         F.prototype.$constructor = function() {
             this.test1 = "test1-old";
@@ -169,7 +169,7 @@ describe("It tests if sClass can correctly perform $super", function() {
             return this.test2;
         };
 
-        F2 = sClass( { extending: F } );
+        F2 = $Class( { extending: F } );
 
         F2.prototype.$constructor = function() {
             this.$super();
@@ -204,7 +204,7 @@ describe("It tests if sClass can correctly perform $super", function() {
 
 });
 
-describe("It tests if sClass can correctly implement interface", function() {
+describe("It tests if $Class can correctly implement interface", function() {
 
     var F = null;
     var F2 = null;
@@ -233,9 +233,9 @@ describe("It tests if sClass can correctly implement interface", function() {
             return "test4";
         };
 
-        F = sClass({ implementing: IFace1 });
-        F2 = sClass({ implementing: IFace2 });
-        F3 = sClass({ implementing: [IFace1, IFace2] });
+        F = $Class({ implementing: IFace1 });
+        F2 = $Class({ implementing: IFace2 });
+        F3 = $Class({ implementing: [IFace1, IFace2] });
 
     });
 
@@ -279,7 +279,7 @@ describe("It tests if sClass can correctly implement interface", function() {
 
 });
 
-describe("It tests if sClass can correctly perform inheritance and implement interface together", function() {
+describe("It tests if $Class can correctly perform inheritance and implement interface together", function() {
 
     var F = null;
     var F2 = null;
@@ -296,7 +296,7 @@ describe("It tests if sClass can correctly perform inheritance and implement int
             }
         };
 
-        F = sClass();
+        F = $Class();
 
         F.prototype.$constructor = function() {
             this.test1 = "test1-old";
@@ -311,7 +311,7 @@ describe("It tests if sClass can correctly perform inheritance and implement int
             return this.test2;
         };
 
-        F2 = sClass({ extending: F, implementing: IFace });
+        F2 = $Class({ extending: F, implementing: IFace });
 
         F2.prototype.getTest5 = function() {
             return "test5";

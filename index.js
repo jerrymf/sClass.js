@@ -35,7 +35,7 @@
 			if (this.$constructor) {
 				if (typeof this.$constructor != "function") {
 					if (console && console.warn) {
-						console.warn("sClass: $constructor should be a function not " + typeof this.$constructor);
+						console.warn("$Class: $constructor should be a function not " + typeof this.$constructor);
 					}
 				} else {
 					this.$constructor.apply(this, arguments);
@@ -57,7 +57,7 @@
 
 		var f = function() {
 
-			throw new Error("sClass: I am singleton. You can not call me this way. Use getInstance method to get referenced for object.");
+			throw new Error("$Class: I am singleton. You can not call me this way. Use getInstance method to get referenced for object.");
 
 		};
 
@@ -72,7 +72,7 @@
 			if (instance.$constructor) {
 				if (typeof instance.$constructor != "function") {
 					if (console && console.warn) {
-						console.warn("sClass: $constructor should by a function not " + typeof this.$constructor);
+						console.warn("$Class: $constructor should by a function not " + typeof this.$constructor);
 					}
 				} else {
 					instance.$constructor.apply(instance);
@@ -91,7 +91,7 @@
 	var implementInterface = function(f, implementing) {
 
 		if (!implementing || (typeof implementing != "object" && typeof implementing != "function")) {
-			throw new Error("sClass: I can not implement interface of " + typeof implementing);
+			throw new Error("$Class: I can not implement interface of " + typeof implementing);
 		}
 
 		for (var p in implementing) {
@@ -143,13 +143,13 @@
 			var callerName = caller.___SUPERNAME___;
 
 			if (!callerName) {
-				throw new Error("sClass: I can not call $super, because I can not get caller name.");
+				throw new Error("$Class: I can not call $super, because I can not get caller name.");
 			}
 
 			var method = this.___PARENT___.prototype[callerName];
 
 			if (!method) {
-				throw new Error("sClass: There is not $super method named " + callerName + " in parent class");
+				throw new Error("$Class: There is not $super method named " + callerName + " in parent class");
 			}
 
 			return method.apply(this, arguments);
@@ -161,12 +161,12 @@
 
 	};
 
-	var sClass = function(conf) {
+	var $Class = function(conf) {
 
 		conf = conf || {};
 
 		if (conf && (typeof conf != "object" || conf instanceof Array)) {
-			throw new Error("sClass: I accept only object as argument.");
+			throw new Error("$Class: I accept only object as argument.");
 		}
 
 		var f = null;
@@ -181,7 +181,7 @@
 			var extending = conf.extending;
 
 			if (typeof(extending) != "function") {
-				throw new Error("sClass: extending can be only construct function not " + typeof extending);
+				throw new Error("$Class: extending can be only construct function not " + typeof extending);
 			}
 
 			makeExtension(f, extending);
@@ -195,7 +195,7 @@
 
 				if (!imp || (typeof imp != "function" && typeof imp != "object")) {
 					if (console && console.warn) {
-						console.warn("sClass: You are trying implement " + typeof imp + ". I can work only with object.");
+						console.warn("$Class: You are trying implement " + typeof imp + ". I can work only with object.");
 					}
 				}
 
@@ -211,9 +211,9 @@
 	};
 
 	if (m && typeof m == "object" && m.exports && typeof m.exports == "object") {
-		m.exports.sClass = sClass;
+		m.exports.$Class = $Class;
 	} else if (w) {
-		w.sClass = sClass;
+		w.$Class = $Class;
 	}
 
 })(

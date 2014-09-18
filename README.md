@@ -7,9 +7,9 @@ Supported IE8 and all modern browsers.
 ## Creating class
 ```js
 
-var MyClass = sClass(); // this is a class
+var MyClass = $Class(); // this is a class
 
-MyClass.prototype.$constructor = function(id) { 
+MyClass.prototype.$constructor = function(id) {
   // this function is applied in its context during new MyClass() is performed
   this.id = id;
   this.text = "Good evening ... infidels!";
@@ -32,7 +32,7 @@ console.log(instance.getId()); // 1
 ## Creating singleton
 ```js
 
-var DeathStar = sClass({ singleton : true });
+var DeathStar = $Class({ singleton : true });
 
 DeathStar.prototype.$constructor = function(id) { 
   this.weapons = [];
@@ -52,7 +52,7 @@ var dStar = new DeathStar();
 ## Performing inheritance
 ```js
 
-var Knight = sClass();
+var Knight = $Class();
 
 Knight.prototype.$constructor = function() {
   this.weapon = "saber";
@@ -64,7 +64,7 @@ Knight.prototype.getWeapon = function() {
 
 
 
-var JediKnight = sClass( { extending: Knight } ); // you can see we give reference to Knight
+var JediKnight = $Class( { extending: Knight } ); // you can see we give reference to Knight
 
 JediKnight.prototype.$constructor = function() {
   this.weapon = "light saber";
@@ -80,7 +80,7 @@ console.log(jKnight.getWeapon()); // shows "light saber"
 ## Using $super method
 ```js
 
-var Knight = sClass();
+var Knight = $Class();
 
 Knight.prototype.$constructor = function(name) {
   this.name = name || "noname";
@@ -97,7 +97,7 @@ Knight.prototype.setWeapon = function(name) {
 
 
 
-var JediKnight = sClass( { extending: Knight } ); // you can see we give reference to Knight
+var JediKnight = $Class( { extending: Knight } ); // you can see we give reference to Knight
 
 JediKnight.prototype.$constructor = function(name, skill) {
   this.$super(name); // just simply call $super to apply parent $constructor
