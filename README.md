@@ -42,8 +42,9 @@ DeathStar.prototype.getWeapons = function() {
 
 console.log(DeathStar.getInstance().getWeapons()); // []
 
+// you can not call singleton with new, but always with getInstance method
 // this throws an error
-var dStar = new DeathStar(); // you can not call singleton with new, but always with getInstance method
+var dStar = new DeathStar(); 
 ```
 
 ## Performing inheritance
