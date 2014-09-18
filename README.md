@@ -24,8 +24,9 @@ MyClass.prototype.getId = function() {
 };
 
 var instance = new MyClass(1);
-console.log(instance.getText());
-console.log(instance.getId());
+console.log(instance.getText()); // "Good evening ... infidels!"
+console.log(instance.getId()); // 1
+
 ```
 
 ## Creating singleton
@@ -51,8 +52,6 @@ var dStar = new DeathStar();
 ## Performing inheritance
 ```js
 
-
-
 var Knight = sClass();
 
 Knight.prototype.$constructor = function() {
@@ -75,12 +74,11 @@ var jKnight = new JediKnight();
 console.log(jKnight instanceof JediKnight); // true
 console.log(jKnight instanceof Knight); // true
 console.log(jKnight.getWeapon()); // shows "light saber"
+
 ```
 
 ## Using $super method
 ```js
-
-
 
 var Knight = sClass();
 
@@ -126,4 +124,5 @@ jKnight.setWeapon("blue light saber", 10);
 console.log(jKnight.getSkill()); // 5
 console.log(jKnight.getWeapon()); // "blue light saber"
 console.log(jKnight.getWeaponSkill()); // 10
+
 ```
