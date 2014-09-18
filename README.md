@@ -67,7 +67,7 @@ Knight.prototype.getWeapon = function() {
 var JediKnight = $Class( { extending: Knight } ); // you can see we give reference to Knight
 
 JediKnight.prototype.$constructor = function() {
-  this.weapon = "light saber";
+  this.weapon = "lightsaber";
 };
 
 var jKnight = new JediKnight();
@@ -101,7 +101,7 @@ var JediKnight = $Class( { extending: Knight } ); // you can see we give referen
 
 JediKnight.prototype.$constructor = function(name, skill) {
   this.$super(name); // just simply call $super to apply parent $constructor
-  this.weapon = "light saber";
+  this.weapon = "";
   this.skill = 0;
   this.weaponSkill = 0;
 };
@@ -120,9 +120,50 @@ JediKnight.prototype.getWeaponSkill = function() {
 };
 
 var jKnight = new JediKnight("Obi-Wan Kenobi", 5);
-jKnight.setWeapon("blue light saber", 10);
+jKnight.setWeapon("lightsaber", 10);
 console.log(jKnight.getSkill()); // 5
 console.log(jKnight.getWeapon()); // "blue light saber"
 console.log(jKnight.getWeaponSkill()); // 10
+
+```
+
+## Implementing interfaces
+```js
+
+var IFaceWeapons = {
+  setWeapon: function(name) {
+    this.name = name;
+  },
+  getWeapon: function() {
+    return this.name;
+  }
+};
+
+var IFaceSkills = {
+  setSkill: function(skill) {
+    this.skill = skill;
+  },
+  getSkill: function() {
+    return this.skill;
+  }
+};
+
+var Knight = $Class({ implementing: IFaceWeapons });
+
+Knight.prototype.$constructor = function(name) {
+  this.name = name || "noname";
+};
+
+
+
+var JediKnight = $Class({ extending: Knight, implementing: IFaceSkills }); // we use parent $constructor, we can not define it again
+
+var jKnight = new JediKnight("Obi-Wan Kenobi);
+
+jKnight.setWeapon("lightsaber");
+jKnight.setSkill(10);
+
+console.log(jKnight.getWeapon()); // "light saber"
+console.log(jKnight.getSkill()); // 10
 
 ```
