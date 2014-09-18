@@ -1,6 +1,8 @@
 sClass.js (v1.0.0)
 =========
 
+[![Build Status](https://travis-ci.org/jerrymf/sClass.js.svg?branch=master)](https://travis-ci.org/jerrymf/sClass.js)
+
 Small JS utility for defining classes, performing inheritance and implementing interfaces. It is easy to use and 
 supported IE8 and all modern browsers.
 
