@@ -6,7 +6,7 @@ Small JS utility for defining classes, performing inheritance and implementing i
 ## Creating classes
 ```js
 
-var MyClass = sClass(); // we define this is a class
+var MyClass = sClass(); // this is a class
 
 MyClass.prototype.$constructor = function(id) { 
   // this function is applied in its context during new MyClass() is performed
