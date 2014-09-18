@@ -51,6 +51,8 @@ var dStar = new DeathStar();
 ## Performing inheritance
 ```js
 
+
+
 var Knight = sClass();
 
 Knight.prototype.$constructor = function() {
@@ -60,6 +62,8 @@ Knight.prototype.$constructor = function() {
 Knight.prototype.getWeapon = function() {
   return this.weapon;
 };
+
+
 
 var JediKnight = sClass( { extending: Knight } ); // you can see we give reference to Knight
 
@@ -76,6 +80,8 @@ console.log(jKnight.getWeapon()); // shows "light saber"
 ## Using $super method
 ```js
 
+
+
 var Knight = sClass();
 
 Knight.prototype.$constructor = function(name) {
@@ -90,6 +96,8 @@ Knight.prototype.getWeapon = function() {
 Knight.prototype.setWeapon = function(name) {
   this.weapon = name;
 };
+
+
 
 var JediKnight = sClass( { extending: Knight } ); // you can see we give reference to Knight
 
