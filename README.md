@@ -3,7 +3,7 @@ sClass.js
 
 Small JS utility for defining classes, performing inheritance and implementing interfaces.
 
-## Creating classes
+## Creating class
 ```js
 
 var MyClass = sClass(); // this is a class
@@ -25,6 +25,25 @@ MyClass.prototype.getId = function() {
 var instance = new MyClass(1);
 console.log(instance.getText());
 console.log(instance.getId());
+```
+
+## Creating singleton
+```js
+
+var DeathStar = sClass({ singleton : true });
+
+DeathStar.prototype.$constructor = function(id) { 
+  this.weapons = [];
+};
+
+DeathStar.prototype.getWeapons = function() {
+  return this.weapons;
+};
+
+console.log(DeathStar.getInstance().getWeapons()); // []
+
+// this throws an error
+var dStar = new DeathStar(); // you can not call singleton with new, but always with getInstance method
 ```
 
 ## Performing inheritance
