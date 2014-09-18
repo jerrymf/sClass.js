@@ -136,6 +136,8 @@ describe("It tests if $Class can correctly perform inheritance", function() {
         var f = new F();
         var f2 = new F2();
 
+        expect(f2 instanceof F2).toEqual(true);
+        expect(f instanceof F).toEqual(true);
         expect(typeof f2).toEqual("object");
         expect(typeof f2.getTest1).toEqual("function");
         expect(typeof f2.getTest2).toEqual("function");
