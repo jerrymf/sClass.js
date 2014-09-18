@@ -20,6 +20,13 @@ npm install sclass.js --save
 bower install sclass.js --save
 ```
 
+## Using by CommonJS (Browserify, Node.js)
+```js
+
+var $Class = require("sclass.js").$Class;
+
+```
+
 ## Creating class
 ```js
 
