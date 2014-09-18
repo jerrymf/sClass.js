@@ -102,31 +102,26 @@
 
 			if (!caller.___SUPERNAME___) {
 				for (var p in proto) {
-					var method = proto[p];
+					var item = proto[p];
 
-					if (typeof method != "function") { 
+					if (typeof item != "function") {
 						continue; 
 					}
 
-					method.___SUPERNAME___ = p;
+					item.___SUPERNAME___ = p;
 				}
 			}
 
-			var callerName = caller.___SUPERNAME___ || "";
+			var callerName = caller.___SUPERNAME___;
 
 			if (!callerName) {
-				for (var p in proto) {
-					if (proto[p] == caller) {
-						callerName = p;
-						break;
-					}
-				}
+				throw new Error("sClass: I can not call $super, because I can not get caller name.");
 			}
 
 			var method = this.___PARENT___.prototype[callerName];
 
 			if (!method) {
-				throw new Error("There is not $super method named " + callerName + " in parent class");
+				throw new Error("sClass: There is not $super method named " + callerName + " in parent class");
 			}
 
 			return method.apply(this, arguments);
@@ -143,7 +138,7 @@
 		conf = conf || {};
 
 		if (conf && (typeof conf != "object" || conf instanceof Array)) {
-			throw new Error("sClass accepts only object as its argument.");
+			throw new Error("sClass: I accept only object as argument.");
 		}
 
 		var f = null;

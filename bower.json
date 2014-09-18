@@ -1,0 +1,24 @@
+{
+  "name": "sClass.js",
+  "main": "index.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/jerrymf/SClass.js",
+  "authors": [
+    "Marek Fojtl <jerrymf@gmail.com>"
+  ],
+  "description": "Small JS utility for defining classes, performing inheritance and implementing interfaces.",
+  "keywords": [
+    "class",
+    "singleton",
+    "inheritance",
+    "interface"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
