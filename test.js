@@ -149,6 +149,30 @@ describe("It tests if $Class can correctly perform inheritance", function() {
 
 });
 
+describe("It tests non $Class inheritance", function() {
+
+    var F = null;
+
+    beforeEach(function() {
+
+        F = function() {
+            this.test = "test";
+        };
+
+        F.prototype.getTest = function() {
+            return this.test;
+        };
+
+    });
+
+    it("should not extend non $Class class", function() {
+
+        expect(function() { var F2 = $Class({ extending: F}); }).toThrow(new Error("$Class: I can not extend non $Class class."));
+
+    });
+
+});
+
 describe("It tests if $Class can correctly perform $super", function() {
 
     var F = null;

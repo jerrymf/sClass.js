@@ -1,7 +1,7 @@
 {
   "name": "sclass.js",
   "main": "index.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/jerrymf/SClass.js",
   "authors": [
     "Marek Fojtl <jerrymf@gmail.com>"

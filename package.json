@@ -1,6 +1,6 @@
 {
   "name": "sclass.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Small JS utility for defining classes, performing inheritance and implementing interfaces.",
   "main": "index.js",
   "scripts": {

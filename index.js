@@ -1,3 +1,9 @@
+/**
+ * sClass.js - 1.0.1
+ * (c) 2014 Marek Fojtl <jerrymf@gmail.com>, https://github.com/jerrymf/sClass/
+ * License: MIT
+ */
+
 (function(m, w) {
 
 	if (typeof Object.create != "function") {
@@ -121,11 +127,6 @@
 		f.prototype.$super = function() {
 
 			var caller = arguments.callee.caller;
-
-			if (caller == this.constructor) {
-				return this.___PARENT___.apply(this, arguments);
-			}
-
 			var proto = this.constructor.prototype;
 
 			if (!caller.___SUPERNAME___) {
@@ -177,11 +178,17 @@
 			f = makeSingleton();
 		}
 
+		f.___SCLASS___ = true;
+
 		if (conf.extending) {
 			var extending = conf.extending;
 
 			if (typeof(extending) != "function") {
 				throw new Error("$Class: extending can be only construct function not " + typeof extending);
+			}
+
+			if (!extending.___SCLASS___) {
+				throw new Error("$Class: I can not extend non $Class class.");	
 			}
 
 			makeExtension(f, extending);
