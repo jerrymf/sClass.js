@@ -28,7 +28,7 @@ bower install sclass.js --save
 <script type="text/javascript" src="path_to_sclass/index.min.js"></script>
 ```
 
-## Using by CommonJS (Browserify, Node.js)
+## Using by CommonJS (Node.js)
 ```js
 
 var $Class = require("sclass.js").$Class;
