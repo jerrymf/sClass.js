@@ -158,7 +158,7 @@ Knight.prototype.$constructor = function(name) {
 
 var JediKnight = $Class({ extending: Knight, implementing: IFaceSkills }); // we use parent $constructor, we can not define it again
 
-var jKnight = new JediKnight("Obi-Wan Kenobi);
+var jKnight = new JediKnight("Obi-Wan Kenobi");
 
 jKnight.setWeapon("lightsaber");
 jKnight.setSkill(10);
