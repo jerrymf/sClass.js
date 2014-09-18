@@ -29,7 +29,7 @@ var $Class = require("sclass.js").$Class;
 ## Creating class
 ```js
 
-var MyClass = $Class(); // this is a class
+var MyClass = $Class(); // creating class
 
 MyClass.prototype.$constructor = function(id) {
   // this function is applied in its context during performing statement: new MyClass()
@@ -45,7 +45,7 @@ MyClass.prototype.getId = function() {
   return this.id;
 };
 
-var instance = new MyClass(1);
+var instance = new MyClass(1); // creating instance of class
 console.log(instance.getText()); // "Good evening ... infidels!"
 console.log(instance.getId()); // 1
 
