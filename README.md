@@ -5,8 +5,8 @@ sClass.js - Simply to create Class in JS
 
 [![Build Status](https://travis-ci.org/jerrymf/sClass.js.svg?branch=master)](https://travis-ci.org/jerrymf/sClass.js)
 
-Small JS utility for defining classes, performing inheritance and implementing interfaces. It is easy to use and 
-supported IE8 and all modern browsers.
+Small JS utility for class defining, making inheritance and implementing interfaces. It is easy to use and it 
+supports IE8 and all modern browsers.
 
 ## Installation
 
@@ -40,7 +40,7 @@ var $Class = require("sclass.js").$Class;
 var MyClass = $Class(); // creating class
 
 MyClass.prototype.$constructor = function(id) {
-  // this function is applied in its context during performing statement: new MyClass()
+  // $constructor is calling during creating class
   this.id = id;
   this.text = "Good evening ... infidels!";
 };
@@ -76,7 +76,7 @@ DeathStar.prototype.getWeapons = function() {
 
 console.log(DeathStar.getInstance().getWeapons()); // []
 
-// you can not call singleton with new, but always with getInstance method
+// you can not call singleton with new operator, but always with getInstance method
 // this throws an error
 var dStar = new DeathStar(); 
 ```
@@ -97,7 +97,7 @@ Knight.prototype.getWeapon = function() {
 
 
 var JediKnight = $Class({
-  extending: Knight // you can see we give reference to Knight
+  extending: Knight // as you can see we give reference to Knight
 });
 
 JediKnight.prototype.$constructor = function() {
@@ -132,18 +132,18 @@ Knight.prototype.setWeapon = function(name) {
 
 
 var JediKnight = $Class({
-  extending: Knight // you can see we give reference to Knight
+  extending: Knight // as you can see we give reference to Knight
 });
 
 JediKnight.prototype.$constructor = function(name, skill) {
-  this.$super(name); // just simply call $super to apply parent $constructor
+  this.$super(name); // just simply call $super to apply parent $constructor method
   this.skill = skill || 0;
   this.weapon = "";
   this.weaponSkill = 0;
 };
 
 JediKnight.prototype.setWeapon = function(name, skill) {
-  this.$super(name); // just simply call $super to apply parent setWeapon
+  this.$super(name); // just simply call $super to apply parent setWeapon method
   this.weaponSkill = skill;
 };
 
@@ -197,7 +197,7 @@ Knight.prototype.$constructor = function(name) {
 var JediKnight = $Class({
   extending: Knight,
   implementing: IFaceSkills
-}); // we use parent $constructor, we can not define it again
+}); // we use parent $constructor, we don't define it again
 
 var jKnight = new JediKnight("Obi-Wan Kenobi");
 
@@ -214,7 +214,7 @@ console.log(jKnight.getSkill()); // 10
 
 var Sith = $Class({
   extending: Knight,
-  implementing: [IFaceWeapons, IFaceSkills] // first IFaceWeapons is implemented and then IFaceSkills
+  implementing: [IFaceWeapons, IFaceSkills] // firstly IFaceWeapons is implemented and then IFaceSkills
 });
 
 ```
